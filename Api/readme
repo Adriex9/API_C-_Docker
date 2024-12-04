@@ -15,11 +15,6 @@ This API provides endpoints to manage and interact with a database of students. 
 - Dapper ORM
 
 
-# Clone the repository
-
-git clone https://github.com/your-repo/ucla-student-api.git
-cd ucla-student-api
-
 # you can run the container by doing (be sure to be in the right directory)
 docker-compose up --build -d
 
