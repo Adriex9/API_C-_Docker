@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "F+lpPW7zj6f0OStpuYhoNbrFfaKfPI3Ituz+9KMT3bI=",
+  "Source": "Api",
+  "BasePath": "_content/Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Api\\wwwroot",
+      "Source": "Api",
+      "ContentRoot": "C:\\Users\\yoanm\\c#\\lab7\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\yoanm\\c#\\lab7\\Api\\wwwroot\\submitsql.html",
+      "SourceId": "Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\yoanm\\c#\\lab7\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "RelativePath": "submitsql.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\submitsql.html"
+    }
+  ]
+}

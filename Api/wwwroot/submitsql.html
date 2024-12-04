@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+</head>
+<body>
+
+    <h1>Student Management</h1>
+
+    <!-- Buttons for different actions -->
+    <button id="addStudentButton">Add Student</button>
+    <br>
+    <button id="showStudentsButton">Show Students</button>
+    <br>
+    <button id="deleteStudentsButton">Delete Student</button>
+
+    <!-- Input fields for Add and Delete actions -->
+    <div id="inputSection">
+        <!-- Fields for adding a student -->
+        <input type="text" id="studentFirstname" placeholder="First Name (Add)">
+        <br>
+        <input type="text" id="studentLastname" placeholder="Last Name (Add)">
+        <br>
+        <input type="text" id="studentEmail" placeholder="Email (Add)">
+        <br>
+
+        <!-- Field for deleting a student -->
+        <input type="number" id="studentId" placeholder="Student ID (Delete)">
+    </div>
+
+    <!-- Display results -->
+    <div id="results">
+        <h3>Results:</h3>
+        <pre id="executionResult"></pre>
+        <p id="errorMessage" style="color: red;"></p>
+    </div>
+
+    <script>
+        const addStudentButton = document.getElementById('addStudentButton');
+        const showStudentsButton = document.getElementById('showStudentsButton');
+        const deleteStudentsButton = document.getElementById('deleteStudentsButton');
+        const executionResult = document.getElementById('executionResult');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Function to add a student
+        addStudentButton.addEventListener('click', () => {
+            const firstname = document.getElementById('studentFirstname').value;
+            const lastname = document.getElementById('studentLastname').value;
+            const email = document.getElementById('studentEmail').value;
+
+            if (!firstname || !lastname || !email) {
+                errorMessage.textContent = 'Please provide first name, last name, and email.';
+                return;
+            }
+
+            fetch('/students', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ Firstname: firstname, Lastname: lastname, Email: email }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add student. Status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                executionResult.textContent = `Added Student: ${JSON.stringify(data, null, 2)}`;
+                errorMessage.textContent = '';
+            })
+            .catch(error => {
+                errorMessage.textContent = 'Error: ' + error.message;
+            });
+        });
+
+        // Function to show all students
+        showStudentsButton.addEventListener('click', () => {
+            fetch('/students', {
+                method: 'GET',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students. Status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                executionResult.textContent = `Students: ${JSON.stringify(data, null, 2)}`;
+                errorMessage.textContent = '';
+            })
+            .catch(error => {
+                errorMessage.textContent = 'Error: ' + error.message;
+            });
+        });
+
+        // Function to delete a student
+        deleteStudentsButton.addEventListener('click', () => {
+            const studentId = document.getElementById('studentId').value;
+
+            if (!studentId) {
+                errorMessage.textContent = 'Please provide a student ID.';
+                return;
+            }
+
+            fetch(`/students/${studentId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete student. Status: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                executionResult.textContent = `Deleted Student: ${data}`;
+                errorMessage.textContent = '';
+            })
+            .catch(error => {
+                errorMessage.textContent = 'Error: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>

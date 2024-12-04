@@ -1,0 +1,28 @@
+# UCLA Student API
+
+This API provides endpoints to manage and interact with a database of students. It is built using .NET Core and connects to a PostgreSQL database for storing student data.
+
+## Features
+- **Retrieve all students**: Get a list of all students in the database.
+- **Add a new student**: Insert new students into the database.
+- **Update student details**: Modify an existing student's information.
+- **Delete a student**: Remove a student from the database.
+- **volume build-in so that you don't lose data even if the container crash**
+## Prerequisites
+- Docker
+- .NET 6.0 or higher
+- PostgreSQL database
+- Dapper ORM
+
+
+# Clone the repository
+
+git clone https://github.com/your-repo/ucla-student-api.git
+cd ucla-student-api
+
+# you can run the container by doing (be sure to be in the right directory)
+docker-compose up --build -d
+
+# in order to reset the volume and the container you can always do this 
+docker-compose down -v
+docker-compose up --build
